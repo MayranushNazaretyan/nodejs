@@ -20,13 +20,17 @@
     "url": "https://github.com/MayranushNazaretyan/nodejs/issues"
   },
   "homepage": "https://github.com/MayranushNazaretyan/nodejs#readme",
-  "dependencies": {},
+  "dependencies": {
+    "convert-csv-to-json": "0.0.13"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.0.16",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.0.15",
     "babel-register": "^6.26.0",
     "nodemon": "^1.18.6"
   }
