@@ -10,21 +10,31 @@
 export class DirWatcher extends EventEmitter {
     constructor(path) {
         super();
-        this.path = path;
+        this.obj = this.createObject(path);
     }
 
-    async watch() {
-        let file = await readFileAsync(this.path);
-        console.log(file);
+    async createObject(path) {
+        const obj = {};
+        fs.readdir(path, (err, files) => {
+            files.forEach(async file => {
+                obj[file] = await readFileAsync(path + '/' + file);
+            });
+        });
+        return obj;
+    }
+
+    async watch(path) {
         setInterval(() => {
-            const newFile = readFileAsync(this.path);
-            newFile.then(nf => {
-                const x = Buffer.compare(file, nf);
-                if (x) {
-                    console.log('trigger change');
-                    this.emit('change', this.path);
-                    file = nf;
-                }
+            fs.readdir(path, (err, files) => {
+                files.forEach(async file => {
+                    const newFile = await readFileAsync(path + '/' + file);
+                    const obj = await this.obj;
+                        const x = Buffer.compare(obj[file], newFile);
+                        if (x) {
+                            this.emit('change', path);
+                            obj[file] = newFile;
+                        }
+                });
             });
         }, delay);
     }

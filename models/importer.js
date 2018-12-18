@@ -1,3 +1,4 @@
+import * as fs from "fs";
 import csvToJson from 'convert-csv-to-json';
 import 'babel-core/register';
 import 'babel-polyfill';
@@ -8,15 +9,19 @@ export class Importer {
     }
 
     async import() {
-        try {
-            return await csvToJson.getJsonFromCsv(this.path);
-        } catch (e) {
-            console.error(e);
-            throw e;
-        }
+        fs.readdir(this.path, (err, files) => {
+            files.forEach(async file => {
+                const json = await csvToJson.getJsonFromCsv(this.path + '/' + file);
+                console.log(json, '--------async json');
+            });
+        });
     }
 
-    importSync() {
-        return csvToJson.getJsonFromCsv(this.path);
+    async importSync() {
+        var files = fs.readdirSync(this.path);
+        files.forEach(file => {
+            const json = csvToJson.getJsonFromCsv(this.path + '/' + file);
+            console.log(json, '--------sync json');
+        });
     }
 }
