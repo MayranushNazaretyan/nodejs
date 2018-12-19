@@ -9,19 +9,12 @@ export class Importer {
     }
 
     async import() {
-        fs.readdir(this.path, (err, files) => {
-            files.forEach(async file => {
-                const json = await csvToJson.getJsonFromCsv(this.path + '/' + file);
-                console.log(json, '--------async json');
-            });
-        });
+        const json = await csvToJson.getJsonFromCsv(this.path);
+        return json;
     }
 
-    async importSync() {
-        var files = fs.readdirSync(this.path);
-        files.forEach(file => {
-            const json = csvToJson.getJsonFromCsv(this.path + '/' + file);
-            console.log(json, '--------sync json');
-        });
+    importSync() {
+        const json = csvToJson.getJsonFromCsv(this.path);
+        return json;
     }
 }

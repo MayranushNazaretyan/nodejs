@@ -31,7 +31,7 @@ export class DirWatcher extends EventEmitter {
                     const obj = await this.obj;
                         const x = Buffer.compare(obj[file], newFile);
                         if (x) {
-                            this.emit('change', path);
+                            this.emit('change', path + '/' + file);
                             obj[file] = newFile;
                         }
                 });

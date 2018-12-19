@@ -10,9 +10,11 @@ console.log(config.name);
 
 const watchPath = new DirWatcher('./data');
 watchPath.watch('./data');
-watchPath.on('change', (path) => {
+watchPath.on('change', async (path) => {
     const obj = new Importer(path);
-    obj.import();
-    obj.importSync();
+    const jsonAsync = await obj.import();
+    console.log(jsonAsync, '---------jsonAsync');
+    const jsonSync = obj.importSync();
+    console.log(jsonSync, '---------jsonSync');
 });
 

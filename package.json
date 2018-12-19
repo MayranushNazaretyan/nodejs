@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/MayranushNazaretyan/nodejs#readme",
   "dependencies": {
-    "convert-csv-to-json": "0.0.13"
+    "convert-csv-to-json": "0.0.13",
+    "vim": "^0.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
