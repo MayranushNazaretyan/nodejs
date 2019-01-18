@@ -6,6 +6,7 @@ program
     .version('0.1.0')
     .option('-a, --action [type]', 'Add action [action]', 'action')
     .option('-f, --file [type]', 'Add file [file]', 'file')
+    .option('-p, --path [type]', 'Add file [path]', 'path')
     .option('-h, --help', 'Add help')
     .parse(process.argv);
 
@@ -35,6 +36,12 @@ process.argv.forEach((val, index) => {
             console.log('File value is required for convert to file!');
         } else {
             convertToFile(program.file);
+        }
+    } else if(index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1) && program.action.toString() === 'cssBundler') {
+        if (!program.path) {
+            console.log('Path value is required for css bundler!');
+        } else {
+            cssBundler(program.path);
         }
     }
 });
@@ -78,3 +85,16 @@ function convertToFile(file) {
     }
 }
 
+function cssBundler(path) {
+    const folderPath = '../' + path;
+    fs.readdir(folderPath, function(err, items) {
+        const wstream = fs.createWriteStream('bundle.css');
+        for (var i=0; i<items.length; i++) {
+            const filePath = folderPath + '/' +items[i];
+            fs.readFile(filePath, function (err, data) {
+                fs.appendFileSync('bundle.css', data + '\n');
+            });
+        }
+        wstream.end();
+    }); 
+}
