@@ -15,33 +15,44 @@ process.argv.forEach((val, index) => {
         console.log('Help!');
     } else if (index === 2 && (val.indexOf('--action') === -1 || val.indexOf('-a') === -1)) {
         console.log('Action required!');
-    } else if(index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1) && program.action.toString() === 'reverse') {
-       reverse();
-    } else if(index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1) && program.action.toString() === 'transform') {
-       transform();
-    } else if(index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1) && program.action.toString() === 'outputFile') {
-        if (!program.file) {
-            console.log('File value is required for output file!');
-        } else {
-            outputFile(program.file);
-        }
-    } else if(index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1) && program.action.toString() === 'convertFromFile') {
-        if (!program.file) {
-            console.log('File value is required for convert from file!');
-        } else {
-            convertFromFile(program.file);
-        }
-    } else if(index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1) && program.action.toString() === 'convertToFile') {
-        if (!program.file) {
-            console.log('File value is required for convert to file!');
-        } else {
-            convertToFile(program.file);
-        }
-    } else if(index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1) && program.action.toString() === 'cssBundler') {
-        if (!program.path) {
-            console.log('Path value is required for css bundler!');
-        } else {
-            cssBundler(program.path);
+    } else if (index === 2 && (val.indexOf('--action') > -1 || val.indexOf('-a') > -1)) {
+        switch(program.action.toString()) {
+            case 'reverse':
+                reverse();
+                break;
+            case 'transform':
+                transform();
+                break;
+            case 'outputFile':
+                if (!program.file) {
+                    console.log('File value is required for output file!');
+                } else {
+                    outputFile(program.file);
+                }
+                break;
+            case 'convertFromFile':
+                if (!program.file) {
+                    console.log('File value is required for convert from file!');
+                } else {
+                    convertFromFile(program.file);
+                }
+                break;
+            case 'convertToFile':
+                if (!program.file) {
+                    console.log('File value is required for convert to file!');
+                } else {
+                    convertToFile(program.file);
+                }
+                break;
+            case 'cssBundler':
+                 if (!program.path) {
+                    console.log('Path value is required for css bundler!');
+                } else {
+                    cssBundler(program.path);
+                }
+                break;
+            default:
+                reverse();
         }
     }
 });
