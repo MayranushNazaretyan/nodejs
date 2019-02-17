@@ -7,6 +7,7 @@ const express = require('express');
 const app = express();
 const productRouts = require('./routes/products');
 const usersRouts = require('./routes/users');
+const authRouts = require('./routes/auth');
 
 // new User();
 // new Product();
@@ -24,6 +25,7 @@ const usersRouts = require('./routes/users');
 
 app.use('/api/products', productRouts);
 app.use('/api/users', usersRouts);
+app.use('/auth', authRouts);
 
 app.use((req, res, next) => {
     const error = new Error('Not found!');

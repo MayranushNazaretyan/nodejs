@@ -21,10 +21,17 @@
   },
   "homepage": "https://github.com/MayranushNazaretyan/nodejs#readme",
   "dependencies": {
+    "ajv": "^6.9.1",
     "commander": "^2.19.0",
     "convert-csv-to-json": "0.0.13",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.13",
+    "mongoose-findorcreate": "^3.0.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0",
     "vim": "^0.1.0"
   },
   "devDependencies": {
