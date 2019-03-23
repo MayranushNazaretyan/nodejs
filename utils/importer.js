@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import csvToJson from 'convert-csv-to-json';
 import 'babel-core/register';
 import 'babel-polyfill';

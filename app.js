@@ -1,7 +1,7 @@
 // import { User } from './models/user';
 // import { Product } from './models/product';
-// import { Importer } from './models/importer';
-// import { DirWatcher } from './models/dirwatcher';
+// import { Importer } from './utils/importer';
+// import { DirWatcher } from './utils/dirwatcher';
 // import config  from './config/config.json';
 const express = require('express');
 const app = express();
@@ -9,10 +9,12 @@ const productRouts = require('./routes/products');
 const usersRouts = require('./routes/users');
 const authRouts = require('./routes/auth');
 
+require('./database/index');
+
 // new User();
 // new Product();
 // console.log(config.name);
-//
+
 // const watchPath = new DirWatcher('./data');
 // watchPath.watch('./data');
 // watchPath.on('change', async (path) => {

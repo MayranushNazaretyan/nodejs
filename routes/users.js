@@ -1,5 +1,6 @@
 const express = require('express');
 let router = express.Router();
+const { getAllUsers } = require('../controllers/users');
 
 checkToken = (req, res, next) => {
     const token = req.headers['x-access-token'];
@@ -17,10 +18,12 @@ checkToken = (req, res, next) => {
     }
 };
 
-router.get('/', checkToken, (req, res, next) => {
-    res.status(200).json({
-        message: "Handling Get request to /api/users."
-    });
-});
+router.get('/', getAllUsers);
+
+// router.get('/', checkToken, (req, res, next) => {
+//     res.status(200).json({
+//         message: "Handling Get request to /api/users."
+//     });
+// });
 
 module.exports = router;

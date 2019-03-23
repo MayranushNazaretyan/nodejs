@@ -1,9 +1,10 @@
 let fileSystem = require('fs');
 let http = require('http');
 const ReplaceStream = require('./transformStreams/replace-text');
+const path = require('path');
 
 http.createServer(function (request, response) {
-    let filePath = ('../index.html');
+    let filePath = path.join(__dirname, '../index.html');
     let readStream = fileSystem.createReadStream(filePath);
 
     const replaceStream = new ReplaceStream({
