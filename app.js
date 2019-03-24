@@ -8,9 +8,10 @@ const app = express();
 const productRouts = require('./routes/products');
 const usersRouts = require('./routes/users');
 const authRouts = require('./routes/auth');
+const citiesRouts = require('./routes/cities');
 
-require('./database/index');
-
+// require('./database/index');
+require('./database/mongo/connection');
 // new User();
 // new Product();
 // console.log(config.name);
@@ -28,6 +29,7 @@ require('./database/index');
 app.use('/api/products', productRouts);
 app.use('/api/users', usersRouts);
 app.use('/auth', authRouts);
+app.use('/api/cities', citiesRouts);
 
 app.use((req, res, next) => {
     const error = new Error('Not found!');

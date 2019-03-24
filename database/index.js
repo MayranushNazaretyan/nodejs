@@ -3,7 +3,6 @@ const development = require('../config/config.json');
 
 const { database, username, password } = development.development;
 const options = { dialect: 'postgres' };
-console.log(development,'=============');
 const connection = new Sequelize(database, username, password, options);
 
 connection
