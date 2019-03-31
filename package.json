@@ -38,7 +38,11 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.43.0",
     "sequelize-cli": "^5.4.0",
-    "vim": "^0.1.0"
+    "swagger": "^0.7.5",
+    "swagger-cli": "^2.2.1",
+    "swagger-ui-express": "^4.0.2",
+    "vim": "^0.1.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

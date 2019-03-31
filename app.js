@@ -1,10 +1,16 @@
+const express = require('express');
+const app = express();
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger/swagger.yaml');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // import { User } from './models/user';
 // import { Product } from './models/product';
 // import { Importer } from './utils/importer';
 // import { DirWatcher } from './utils/dirwatcher';
 // import config  from './config/config.json';
-const express = require('express');
-const app = express();
 const productRouts = require('./routes/products');
 const usersRouts = require('./routes/users');
 const authRouts = require('./routes/auth');

@@ -1,0 +1,117 @@
+swagger: "2.0"
+info:
+  description: |
+    This is a sample API
+  version: 1.0.0
+  title: homework
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: mayranush_nazaretyan@epam.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: localhost:3000
+basePath: /api
+tags:
+- name: cities
+  description: Api for cities
+schemes:
+- http
+paths:
+  /cities:
+    get:
+      tags:
+      - cities
+      summary: Get all cities list
+      description: Get all cities list
+      operationId: getAllCities
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/City'
+    post:
+      tags:
+      - cities
+      summary: Create a new city
+      description: Create a new city
+      operationId: CreateCity
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: new city
+        required: true
+        schema:
+          $ref: '#/definitions/City'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/City'
+  /cities/{cityId}:
+    put:
+      tags:
+      - cities
+      summary: Update city
+      description: Update city
+      operationId: UpdateCity
+      produces:
+      - application/json
+      parameters:
+      - name: cityId
+        in: path
+        description: City id
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: update city
+        required: true
+        schema:
+          $ref: '#/definitions/City'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/City'
+        404:
+          description: Not Found
+    delete:
+      tags:
+      - cities
+      summary: Delete city
+      description: Delete city
+      operationId: DeleteCityById
+      produces:
+      - application/json
+      parameters:
+      - name: cityId
+        in: path
+        description: City id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        404:
+          description: Not found
+definitions:
+  City:
+    type: object
+    properties:
+      name:
+        type: string
+      country:
+        type: string
+      capital:
+        type: string
+      location:
+        type: object
+        properties: {}
